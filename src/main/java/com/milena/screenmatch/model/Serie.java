@@ -1,5 +1,7 @@
 package com.milena.screenmatch.model;
 
+import com.milena.screenmatch.service.traducao.ConsultaMyMemory;
+
 import java.util.OptionalDouble;
 
 public class Serie {
@@ -18,7 +20,8 @@ public class Serie {
         this.genero=Categoria.fromString(d.genero().split(",")[0].trim());
         this.atores=d.atores();
         this.poster=d.poster();
-        this.sinopse=d.sinopse();
+        this.sinopse= ConsultaMyMemory.obterTraducao(d.sinopse()).trim();
+        //this.sinopse=d.sinopse();
     }
 
     public String getTitulo() {
