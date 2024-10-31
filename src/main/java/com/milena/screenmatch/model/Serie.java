@@ -1,13 +1,20 @@
 package com.milena.screenmatch.model;
 
 import com.milena.screenmatch.service.traducao.ConsultaMyMemory;
+import jakarta.persistence.*;
 
 import java.util.OptionalDouble;
 
+@Entity
+@Table(name="series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String atores;
     private String poster;
@@ -22,6 +29,14 @@ public class Serie {
         this.poster=d.poster();
         this.sinopse= ConsultaMyMemory.obterTraducao(d.sinopse()).trim();
         //this.sinopse=d.sinopse();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
